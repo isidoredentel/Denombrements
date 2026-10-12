@@ -28,8 +28,15 @@ namespace Denombrements
             }
             return reponse;
         }
+        // Multiplication factorielle
+        static void Multiplication(int pop, ref double result, int i)
+        {
+            for (int k = i; k <= pop; k++)
+                result *= k;
+        }
         static void Main(string[] args)
         {
+            const int k = 1;
             int choix = 1;
             while (true)
             {
@@ -48,8 +55,7 @@ namespace Denombrements
                     // Permutation
                     int pop = saisie("nombre total d'éléments à gérer = ");
                     double result = 1;
-                    for (int k = 1; k <= pop; k++)
-                        result *= k;
+                    Multiplication(pop, ref result, k);
                     Console.WriteLine(pop + "! = " + result);
                 }
                 else
@@ -60,20 +66,17 @@ namespace Denombrements
                     {
                         // Arrangement
                         double result = 1;
-                        for (int k = (pop - sub + 1); k <= pop; k++)
-                            result *= k;
+                        Multiplication(pop, ref result, (pop - sub + 1));
                         Console.WriteLine("A(" + pop + "/" + sub + ") = " + result);
                     }
                     else
                     {
                         // Combinaison
                         double result1 = 1;
-                        for (int k = (pop - sub + 1); k <= pop; k++)
-                            result1 *= k;
+                        Multiplication(pop, ref result1, (pop - sub + 1));
 
                         double result2 = 1;
-                        for (int k = 1; k <= sub; k++)
-                            result2 *= k;
+                        Multiplication(sub, ref result2, k);
                         Console.WriteLine("C(" + pop + "/" + sub + ") = " + (result1 / result2));
                     }
                 }
